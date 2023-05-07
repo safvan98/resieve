@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Match Result</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+
+        <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+		<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+       <a class="navbar-brand" href="#" style="
+    padding: 0px;
+    margin: 0px;"><img src="{{ url_for('static', filename='resieve_logo.png') }}" alt="Logo"  style="
+    width: 114px;
+    height: 50px;
+">
+</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+              <li ><a href="#">About</a></li>
+
+
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile </a></li>
+      <li><a href="/logout/{{username}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="row">
+        <div class="col-md-offset-3 col-md-5" style="
+    margin-top: 47px;
+">
+
+            {% if data %}
+                <h3 class="page-header text-success"><span class="fa fa-image"> Matched {{title}}</span></h3>
+            <div class="form-group">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for resumes..">
+                <div id="pagination"></div>
+                </div>
+                <table  id="customers">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>PDF</th>
+                        <th>Prediction</th>
+                        <th>Match Score</th>
+                    </tr>
+                    {% for res in data %}
+                        {% set i=loop.index %}
+
+
+
+                        <tr>
+                            <td style="text-align:center">{{i}}</td>
+                            <td>{{res[2]}}</td>
+                            <td><a href="{{ url_for('static', filename=res[3].replace('\\', '/')[7:]) }}" class="btn btn-success btn-block" target="_blank">View PDF</a></td>
+
+                            <td>{{res[7]}}</td>
+                            <td>{{res[8]}}</td>
+
+
+
+
+
+
+                        </tr>
+                    {% endfor %}
+                    {{output}}
+
+
+                </table>
+            {% endif %}
+
+        </div>
+<!--        <h1>{{resume}}</h1>-->
+    </div>
+<!--<script>-->
+<!--function myFunction() {-->
+<!--  // Declare variables-->
+<!--  var input, filter, table, tr, td, i, txtValue;-->
+<!--  input = document.getElementById("myInput");-->
+<!--  filter = input.value.toUpperCase();-->
+<!--  table = document.getElementById("customers");-->
+<!--  tr = table.getElementsByTagName("tr");-->
+
+<!--  // Loop through all table rows, and hide those who don't match the search query-->
+<!--  for (i = 0; i < tr.length; i++) {-->
+<!--    td = tr[i].getElementsByTagName("td")[1];-->
+<!--    if (td) {-->
+<!--      txtValue = td.textContent || td.innerText;-->
+<!--      if (txtValue.toUpperCase().indexOf(filter) > -1) {-->
+<!--        tr[i].style.display = "";-->
+<!--      } else {-->
+<!--        tr[i].style.display = "none";-->
+<!--      }-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+<!--<script>-->
+<!--function myFunction() {-->
+<!--  // Declare variables-->
+<!--  var input, filter, table, tr, td, i, txtValue;-->
+<!--  input = document.getElementById("myInput");-->
+<!--  filter = input.value.toUpperCase();-->
+<!--  table = document.getElementById("customers");-->
+<!--  tr = table.getElementsByTagName("tr");-->
+
+<!--  // Loop through all table rows, and hide those who don't match the search query-->
+<!--  for (i = 0; i < tr.length; i++) {-->
+<!--    td1 = tr[i].getElementsByTagName("td")[1]; // Second td element-->
+<!--    td2 = tr[i].getElementsByTagName("td")[3]; // Third td element-->
+<!--    if (td1 && td2) {-->
+<!--      txtValue1 = td1.textContent || td1.innerText;-->
+<!--      txtValue2 = td2.textContent || td2.innerText;-->
+<!--      if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {-->
+<!--        tr[i].style.display = "";-->
+<!--      } else {-->
+<!--        tr[i].style.display = "none";-->
+<!--      }-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+<script>
+function myFunction(pageNumber) {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("customers");
+  tr = table.getElementsByTagName("tr");
+
+  // Calculate pagination variables
+  var rowsPerPage = 5;
+  var startIndex = (pageNumber - 1) * rowsPerPage;
+  var endIndex = startIndex + rowsPerPage;
+
+  // Loop through all table rows, and hide those that don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    if (i < startIndex || i >= endIndex) {
+      tr[i].style.display = "none";
+    } else {
+      td1 = tr[i].getElementsByTagName("td")[1]; // Second td element
+      td2 = tr[i].getElementsByTagName("td")[3]; // Third td element
+      if (td1 && td2) {
+        txtValue1 = td1.textContent || td1.innerText;
+        txtValue2 = td2.textContent || td2.innerText;
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+}
+
+function showPage(pageNumber) {
+  myFunction(pageNumber);
+}
+
+function createPaginationButtons() {
+  var table = document.getElementById("customers");
+  var rowsPerPage = 5;
+  var totalRows = table.getElementsByTagName("tr").length - 1; // Exclude the header row
+  var totalPages = Math.ceil(totalRows / rowsPerPage);
+  var pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  for (var i = 1; i <= totalPages; i++) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.onclick = function(pageNumber) {
+      return function() {
+        showPage(pageNumber);
+      };
+    }(i);
+    button.innerHTML = i;
+    pagination.appendChild(button);
+  }
+}
+
+// Call createPaginationButtons() once the page is loaded
+window.onload = function() {
+  createPaginationButtons();
+};
+
+
+</script>
+
+</body>
+</html>

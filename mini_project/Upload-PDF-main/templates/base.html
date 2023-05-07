@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}My Flask Project{% endblock %}</title>
+	<style>
+		/* Your CSS Styles Here */
+		/* Navigation Bar Style */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  padding: 0 30px;
+  height: 80px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-right: 20px;
+}
+
+nav a:hover {
+  color: #FF8C00;
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+	</style>
+</head>
+<body>
+	<nav>
+		<a class="active" href="#">Home</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Contact</a>
+	</nav>
+	{% block content %}{% endblock %}
+</body>
+</html>

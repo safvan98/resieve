@@ -1,0 +1,28 @@
+
+<html lang="en">
+<head>
+        <title>Home</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+		<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+        <style>
+            th{
+                text-align:center;
+            }
+        </style>
+    </head>
+<body>
+<div class="col-md-offset-3 col-md-5" style="margin-top:50px">
+    <form action="/employer" method="GET" >
+         <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="Employer">
+        </div>
+    </form>
+    <form action="/employee" method="GET" >
+         <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="Candidate">
+        </div>
+    </form>
+</div>
+</body>
+</html>

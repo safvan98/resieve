@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+		<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+        <style>
+            th{
+                text-align:center;
+            }
+        </style>
+    </head>
+  <body>
+            <div class="col-md-offset-3 col-md-5" style="margin-top:50px">
+
+
+    <form method="POST" action="{{ url_for('register') }}">
+                              <h3 class="page-header text-success"><span class="fa fa-image"> Registration Form</span></h3>
+              <div class="form-group">
+
+      <label>Enter Username</label>
+      <input type="text" name="username" class="form-control" required><br>
+      <label>Enter Your Email</label>
+      <input type="email" name="email" class="form-control" required><br>
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" required><br>
+      <label>Select User Type</label>
+      <select name="usertype" class="form-control" >
+        <option value="recruiter">Recruiter</option>
+        <option value="candidate">Candidate</option>
+      </select><br>
+      <input type="submit" value="Register" class="btn btn-primary btn-block">
+                  <a href="{{ url_for('login') }}">Already Have an Account ?</a>
+              </div>
+    </form>
+
+<!--  <form method="POST" action="{{ url_for('register') }}">-->
+<!--<div id="container" class="container">-->
+<!--		&lt;!&ndash; FORM SECTION &ndash;&gt;-->
+<!--		<div class="row">-->
+<!--			&lt;!&ndash; SIGN UP &ndash;&gt;-->
+<!--			<div class="col align-items-center flex-col sign-up">-->
+<!--				<div class="form-wrapper align-items-center">-->
+<!--					<div class="form sign-up">-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-user'></i>-->
+<!--							<input type="text" placeholder="Username" name="username">-->
+<!--						</div>-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bx-mail-send'></i>-->
+<!--							<input type="email" placeholder="Email" name="email">-->
+<!--						</div>-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-lock-alt'></i>-->
+<!--							<input type="password" placeholder="Password" name="password">-->
+<!--						</div>-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-lock-alt'></i>-->
+<!--							<input type="password" placeholder="Confirm password">-->
+<!--						</div>-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-lock-alt'></i>-->
+<!--							<select name="usertype">-->
+<!--      <option value="recruiter">Recruiter</option>-->
+<!--        <option value="candidate">Candidate</option>-->
+<!--     </select>-->
+<!--						</div>-->
+<!--						<a><button>-->
+<!--							Sign up-->
+<!--						</button></a>-->
+<!--						<p>-->
+<!--							<span>-->
+<!--								Already have an account?-->
+<!--							</span>-->
+<!--							<b onclick="toggle()" class="pointer">-->
+<!--								Sign in here-->
+<!--							</b>-->
+<!--						</p>-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--			</div>-->
+<!--			&lt;!&ndash; END SIGN UP &ndash;&gt;-->
+<!--			&lt;!&ndash; SIGN IN &ndash;&gt;-->
+<!--			<div class="col align-items-center flex-col sign-in">-->
+<!--				<div class="form-wrapper align-items-center">-->
+<!--					<div class="form sign-in">-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-user'></i>-->
+<!--							<input type="text" placeholder="Username" name="username">-->
+<!--						</div>-->
+<!--						<div class="input-group">-->
+<!--							<i class='bx bxs-lock-alt'></i>-->
+<!--							<input type="password" placeholder="Password" name="password">-->
+<!--						</div>-->
+<!--						<button>-->
+<!--							Sign in-->
+<!--						</button>-->
+<!--						<p>-->
+<!--							<b>-->
+<!--								Forgot password?-->
+<!--							</b>-->
+<!--						</p>-->
+<!--						<p>-->
+<!--							<span>-->
+<!--								Don't have an account?-->
+<!--							</span>-->
+<!--							<b onclick="toggle()" class="pointer">-->
+<!--								Sign up here-->
+<!--							</b>-->
+<!--						</p>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-wrapper">-->
+
+<!--				</div>-->
+<!--			</div>-->
+<!--			&lt;!&ndash; END SIGN IN &ndash;&gt;-->
+<!--		</div>-->
+<!--		&lt;!&ndash; END FORM SECTION &ndash;&gt;-->
+<!--		&lt;!&ndash; CONTENT SECTION &ndash;&gt;-->
+<!--		<div class="row content-row">-->
+<!--			&lt;!&ndash; SIGN IN CONTENT &ndash;&gt;-->
+<!--			<div class="col align-items-center flex-col">-->
+<!--				<div class="text sign-in">-->
+<!--					<h2>-->
+<!--						Welcome-->
+<!--					</h2>-->
+
+<!--				</div>-->
+<!--				<div class="img sign-in">-->
+
+<!--				</div>-->
+<!--			</div>-->
+<!--			&lt;!&ndash; END SIGN IN CONTENT &ndash;&gt;-->
+<!--			&lt;!&ndash; SIGN UP CONTENT &ndash;&gt;-->
+<!--			<div class="col align-items-center flex-col">-->
+<!--				<div class="img sign-up">-->
+
+<!--				</div>-->
+<!--				<div class="text sign-up">-->
+<!--					<h2>-->
+<!--						Join with us-->
+<!--					</h2>-->
+
+<!--				</div>-->
+<!--			</div>-->
+<!--			&lt;!&ndash; END SIGN UP CONTENT &ndash;&gt;-->
+<!--		</div>-->
+<!--		&lt;!&ndash; END CONTENT SECTION &ndash;&gt;-->
+<!--	</div>-->
+<!--	</form>-->
+            </div>
+  </body>
+<!--<script>-->
+<!--	let container = document.getElementById('container')-->
+
+<!--toggle = () => {-->
+<!--	container.classList.toggle('sign-in')-->
+<!--	container.classList.toggle('sign-up')-->
+<!--}-->
+
+<!--setTimeout(() => {-->
+<!--	container.classList.add('sign-in')-->
+<!--}, 200)-->
+<!--</script>-->
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div class="col-md-offset-3 col-md-5" style="margin-top:50px">
+        <h3>Ranked Candidates</h3>
+                        <h3><a href="/">Home</a> </h3>
+
+{% for table in tables %}
+        {{titles[loop.index]}}
+        {{table|safe}}
+{% endfor %}
+    </div>
+</div>
+</body>
+</html>
